@@ -63,11 +63,11 @@ const Home = () => {
 
       <Map lat={apiData.lat} lng={apiData.lng} />
 
-      <div className='absolute z-10 top-8 w-fit h-fit px-5 flex gap-6 flex-col items-center font-Rubik'>
+      <div className='absolute z-10 top-8 w-fit h-fit md:px-5 flex gap-6 flex-col items-center font-Rubik'>
         <h1 className='text-white font-semibold text-2xl md:text-3xl tracking-wider'>IP Address Tracker</h1>
 
-        <form onSubmit={handleSubmit} className='md:w-[600px] h-16 rounded-2xl overflow-hidden flex'>
-          <input className='w-full outline-none px-5 text-lg md:text-xl' onChange={(e) => setInput(e.target.value)} value={input} placeholder='Search for any IP address or domain' type="search" name="search" id="search" />
+        <form onSubmit={handleSubmit} className='w-full md:w-[600px] h-16 rounded-2xl overflow-hidden flex'>
+          <input className='w-full outline-none px-5 text-base placeholder:text-xs md:text-xl' onChange={(e) => setInput(e.target.value)} value={input} placeholder='Search for any IP address or domain' type="search" name="search" id="search" />
           <button type='submit' className='duration-300 bg-black hover:bg-[#414141] text-white w-16 h-full flex justify-center items-center'>
             <img src={iconArrow} alt="icon arrow" />
           </button>
