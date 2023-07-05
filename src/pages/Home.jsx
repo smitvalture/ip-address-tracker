@@ -58,7 +58,7 @@ const Home = () => {
       {loading && <Loading />}
 
       <div className='w-screen h-fit flex justify-center items-center overflow-hidden'>
-        <img className='min-w-min w-full min-h-min' src={bgDesktop} alt="desktop Backgground Image" />
+        <img className='min-w-min w-full h-[450px] md:h-96 lg:min-h-min' src={bgDesktop} alt="desktop Backgground Image" />
       </div>
 
       <Map lat={apiData.lat} lng={apiData.lng} />
@@ -73,7 +73,7 @@ const Home = () => {
           </button>
         </form>
 
-        <div className='w-full md:w-[650px] lg:w-[1200px] md:min-h-[100px] lg:min-h-[140px] lg:mt-6 p-6 shadow-2xl bg-white rounded-xl flex flex-col md:flex-row gap-1 md:gap-5 justify-between divide-y-2 md:divide-y-0 md:divide-x-2'>
+        <div className='w-full md:w-[650px] lg:w-[1200px] md:min-h-[100px] lg:min-h-[140px] mt-6 p-6 shadow-2xl bg-white rounded-xl flex flex-col md:flex-row gap-1 md:gap-5 justify-between divide-y-2 md:divide-y-0 md:divide-x-2'>
           <div className='w-full min-h-full flex flex-col items-center md:items-start gap-2'>
             <h3 className='uppercase text-gray-400 text-xs font-medium tracking-wider'>ip address</h3>
             <p className='text-xl md:text-3xl font-medium'>{apiData.ip}</p>
