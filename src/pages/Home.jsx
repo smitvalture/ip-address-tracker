@@ -14,11 +14,13 @@ const Home = () => {
     country: '',
     timezone: '',
     isp: '',
+    lat: 40.7128,
+    lng: -74.0060,
   })
 
   const ipFetch = (ipAddress) => {
     setLoading(true);
-    fetch(`https://geo.ipify.org/api/v2/country?apiKey=at_DGZf9JrGuBsxJwnyGnrOcy6mM1acb&ipAddress=${ipAddress}`)
+    fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_DGZf9JrGuBsxJwnyGnrOcy6mM1acb&ipAddress=${ipAddress}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -29,6 +31,8 @@ const Home = () => {
           country: data.location.country || "",
           timezone: data.location.timezone || "",
           isp: data.isp || "",
+          lat: data.location.lat,
+          lng: data.location.lng,
         });
         setLoading(false);
       })
@@ -37,9 +41,9 @@ const Home = () => {
       });
   };
 
-  useEffect(() => {
-    console.log("ip:", apiData.ip, "|| region:", apiData.region, "|| country:", apiData.country, "|| timezone:", apiData.timezone, "|| isp:", apiData.isp);
-  }, [apiData])
+  // useEffect(() => {
+  //   console.log("ip:", apiData.ip, "|| region:", apiData.region, "|| country:", apiData.country, "|| timezone:", apiData.timezone, "|| isp:", apiData.isp);
+  // }, [apiData])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -57,34 +61,34 @@ const Home = () => {
         <img className='min-w-min w-full min-h-min' src={bgDesktop} alt="desktop Backgground Image" />
       </div>
 
-      <Map />
+      <Map lat={apiData.lat} lng={apiData.lng} />
 
       <div className='absolute z-10 top-8 w-fit h-fit px-5 flex gap-6 flex-col items-center font-Rubik'>
-        <h1 className='text-white font-semibold text-3xl tracking-wider'>IP Address Tracker</h1>
+        <h1 className='text-white font-semibold text-2xl md:text-3xl tracking-wider'>IP Address Tracker</h1>
 
-        <form onSubmit={handleSubmit} className='w-[600px] h-16 rounded-2xl overflow-hidden flex'>
-          <input className='w-full outline-none px-5 text-xl' onChange={(e) => setInput(e.target.value)} value={input} placeholder='Search for any IP address or domain' type="search" name="search" id="search" />
+        <form onSubmit={handleSubmit} className='md:w-[600px] h-16 rounded-2xl overflow-hidden flex'>
+          <input className='w-full outline-none px-5 text-lg md:text-xl' onChange={(e) => setInput(e.target.value)} value={input} placeholder='Search for any IP address or domain' type="search" name="search" id="search" />
           <button type='submit' className='duration-300 bg-black hover:bg-[#414141] text-white w-16 h-full flex justify-center items-center'>
             <img src={iconArrow} alt="icon arrow" />
           </button>
         </form>
 
-        <div className='w-[1200px] min-h-[140px] mt-6 p-6 shadow-2xl bg-white rounded-xl flex gap-5 justify-between divide-x-2'>
-          <div className='w-full min-h-full flex flex-col gap-2'>
-            <h3 className='uppercase text-gray-400 text-sm font-medium tracking-wider'>ip address</h3>
-            <p className='text-3xl font-medium'>{apiData.ip}</p>
+        <div className='w-full md:w-[650px] lg:w-[1200px] md:min-h-[100px] lg:min-h-[140px] lg:mt-6 p-6 shadow-2xl bg-white rounded-xl flex flex-col md:flex-row gap-1 md:gap-5 justify-between divide-y-2 md:divide-y-0 md:divide-x-2'>
+          <div className='w-full min-h-full flex flex-col items-center md:items-start gap-2'>
+            <h3 className='uppercase text-gray-400 text-xs font-medium tracking-wider'>ip address</h3>
+            <p className='text-xl md:text-3xl font-medium'>{apiData.ip}</p>
           </div>
-          <div className='w-full min-h-full flex flex-col pl-5 gap-2'>
-            <h3 className='uppercase text-gray-400 text-sm font-medium tracking-wider'>location</h3>
-            <p className='text-3xl font-medium'>{apiData.region + (apiData.country && ", ") + apiData.country}</p>
+          <div className='w-full min-h-full flex flex-col items-center md:items-start pt-2 md:pt-0 md:pl-5 gap-2'>
+            <h3 className='uppercase text-gray-400 text-xs font-medium tracking-wider'>location</h3>
+            <p className='text-xl md:text-3xl font-medium'>{apiData.region + (apiData.country && ", ") + apiData.country}</p>
           </div>
-          <div className='w-full min-h-full flex flex-col pl-5 gap-2'>
-            <h3 className='uppercase text-gray-400 text-sm font-medium tracking-wider'>timezone</h3>
-            <p className='text-3xl font-medium'>{apiData.timezone}</p>
+          <div className='w-full min-h-full flex flex-col items-center md:items-start pt-2 md:pt-0 md:pl-5 gap-2'>
+            <h3 className='uppercase text-gray-400 text-xs font-medium tracking-wider'>timezone</h3>
+            <p className='text-xl md:text-3xl font-medium'>{apiData.timezone}</p>
           </div>
-          <div className='w-full min-h-full flex flex-col pl-5 gap-2'>
-            <h3 className='uppercase text-gray-400 text-sm font-medium tracking-wider'>isp</h3>
-            <p className='text-3xl font-medium'>{apiData.isp}</p>
+          <div className='w-full min-h-full flex flex-col items-center md:items-start pt-2 md:pt-0 md:pl-5 gap-2'>
+            <h3 className='uppercase text-gray-400 text-xs font-medium tracking-wider'>isp</h3>
+            <p className='text-xl md:text-3xl font-medium'>{apiData.isp}</p>
           </div>
         </div>
 
