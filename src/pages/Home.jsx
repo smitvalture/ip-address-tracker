@@ -38,6 +38,7 @@ const Home = () => {
       })
       .catch(error => {
         console.log('Error fetching data:', error);
+        setLoading(false);
       });
   };
 
